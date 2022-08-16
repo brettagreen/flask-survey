@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block title %}Choose a Survey!{% endblock %}
+{% block content %}
+{% for msg in get_flashed_messages() %}
+  <h2>{{msg}}</h2>
+{% endfor %}
+  <form action="/start" method="post">
+    <select name="survey">
+        {% for k,v in surveys.items() %}
+        <option value="{{k}}">{{v.title}}</option>
+        {% endfor %}
+    </select>
+    <button>Select Survey</button>
+  </form>
+{% endblock %}

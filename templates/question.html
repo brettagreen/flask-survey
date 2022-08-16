@@ -3,7 +3,7 @@
 {% block title %}{{survey.title}}{% endblock %}
 {% block content %}
 {% for msg in get_flashed_messages() %}
-  <h1>{{msg}}</h1>
+  <h2>{{msg}}</h2>
 {% endfor %}
   <h2>{{question.question}}</h2>
   <form action="/answer" method="post">
@@ -11,6 +11,9 @@
     <input type="radio" id="{{choice}}" name="answer" value="{{choice}}">
     <label for="{{choice}}">{{choice}}</label><br><br />
   {% endfor %}
+  {% if question.allow_text %}
+    <textarea name="comment"></textarea>
+  {% endif %}
     <input type="hidden" name="qnum" value="{{qnum + 1}}">
     <button type="submit">next question</button>
   </form>
